@@ -1,30 +1,51 @@
 import 'package:flutter/material.dart';
-import 'questao.dart';
-import 'resposta.dart';
+import 'questionario.dart';
+import 'resultado.dart';
 
 main() {
   runApp(const PerguntaApp());
 }
 
 class _PerguntaAppState extends State<PerguntaApp> {
-  var perguntaSelecionada = 0;
+  int perguntaSelecionada = 0;
+  int pontuacaoTotal = 0;
   final perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
-      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco']
+      'respostas': [
+        {'texto': 'Preto', 'pontuacao': 10},
+        {'texto': 'Vermelho', 'pontuacao': 5},
+        {'texto': 'Verde', 'pontuacao': 7},
+        {'texto': 'Branco', 'pontuacao': 8}
+      ]
     },
     {
       'texto': 'Qual é a seu animal favorito?',
-      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão']
+      'respostas': [
+        {'texto': 'Coelho', 'pontuacao': 7},
+        {'texto': 'Cobra', 'pontuacao': 5},
+        {'texto': 'Elefante', 'pontuacao': 6},
+        {'texto': 'Leão', 'pontuacao': 1},
+      ]
     }
   ];
+
   final separador = const SizedBox(height: 10);
-  void _responder() {
+
+  void _responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         perguntaSelecionada++;
+        pontuacaoTotal += pontuacao;
       });
     }
+  }
+
+  void _reiniciarQuestionario() {
+    setState(() {
+      perguntaSelecionada = 0;
+      pontuacaoTotal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -33,10 +54,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas = temPerguntaSelecionada
-        ? perguntas[perguntaSelecionada]['respostas'] as List<String>
-        : [];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -46,18 +63,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
           centerTitle: true,
         ),
         body: temPerguntaSelecionada
-            ? Column(
-                children: [
-                  Questao(
-                      texto:
-                          perguntas[perguntaSelecionada]['texto'].toString()),
-                  ...respostas
-                      .map((t) => Resposta(texto: t, onSelecao: _responder))
-                      .toList(),
-                ],
-              )
-            : const Center(
-                child: Text('Parabéns!!!'),
+            ? Questionario(
+                perguntas: perguntas,
+                perguntaSelecionada: perguntaSelecionada,
+                responder: _responder)
+            : Resultado(
+                pontuacao: pontuacaoTotal,
+                quandoReiniciarQuestionario: _reiniciarQuestionario,
               ),
       ),
     );
