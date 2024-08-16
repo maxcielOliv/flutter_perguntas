@@ -31,8 +31,12 @@ class Resultado extends StatelessWidget {
             style: const TextStyle(fontSize: 28),
           ),
         ),
-        FloatingActionButton(
+        TextButton(
           onPressed: quandoReiniciarQuestionario,
+          child: const Text(
+            'Reiniciar?',
+            style: TextStyle(color: Colors.blue),
+          ),
         ),
       ],
     );
