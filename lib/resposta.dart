@@ -7,12 +7,20 @@ class Resposta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onSelecao,
-        child: Text(texto),
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 40,
+          child: ElevatedButton(
+            onPressed: onSelecao,
+            child: SizedBox(
+              child: Text(texto),
+              height: 20,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
