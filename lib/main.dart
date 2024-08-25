@@ -20,12 +20,30 @@ class _PerguntaAppState extends State<PerguntaApp> {
       ]
     },
     {
-      'texto': 'Qual é a seu animal favorito?',
+      'texto': 'Qual é o seu animal favorito?',
       'respostas': [
         {'texto': 'Coelho', 'pontuacao': 7},
         {'texto': 'Cobra', 'pontuacao': 5},
         {'texto': 'Elefante', 'pontuacao': 6},
         {'texto': 'Leão', 'pontuacao': 1},
+      ]
+    },
+    {
+      'texto': 'Qual é a sua comida favorita?',
+      'respostas': [
+        {'texto': 'Lasanha', 'pontuacao': 3},
+        {'texto': 'Pizza', 'pontuacao': 7},
+        {'texto': 'Feiojada', 'pontuacao': 9},
+        {'texto': 'Hambúrguer', 'pontuacao': 5},
+      ]
+    },
+    {
+      'texto': 'Qual é a sua matéria favorita?',
+      'respostas': [
+        {'texto': 'Português', 'pontuacao': 1},
+        {'texto': 'Matemática', 'pontuacao': 9},
+        {'texto': 'Geografia', 'pontuacao': 6},
+        {'texto': 'História', 'pontuacao': 5},
       ]
     }
   ];

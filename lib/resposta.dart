@@ -16,7 +16,6 @@ class Resposta extends StatelessWidget {
             onPressed: onSelecao,
             child: SizedBox(
               child: Text(texto),
-              height: 20,
             ),
           ),
         ),
